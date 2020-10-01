@@ -1,5 +1,3 @@
-'use strict'
-
 const generateHeader = () => {
 	const header = `
 		<header>
@@ -45,7 +43,7 @@ const generateHeader = () => {
 							aria-label="найти"
 						></button>
 					</form>
-					<a href="goods.html?cat=wishlist" class="btn btn-wishlist">
+					<a href="goods.html?wishlist" class="btn btn-wishlist">
 						<svg
 							focusable="false"
 							class="svg-icon"
@@ -88,4 +86,4 @@ const generateHeader = () => {
 	document.body.insertAdjacentHTML('afterbegin', header)
 }
 
-generateHeader()
+export default generateHeader

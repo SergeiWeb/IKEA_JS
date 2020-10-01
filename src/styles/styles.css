@@ -607,11 +607,17 @@ footer {
 .goods-list {
 	display: -ms-grid;
 	display: grid;
+	grid-gap: 1.25rem;
 	grid-template-columns: repeat(4, 1fr);
 }
 
 .goods-list__item {
 	margin-bottom: 2rem;
+	border-radius: 0.3rem;
+}
+
+.goods-list__item:hover {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -628,6 +634,7 @@ footer {
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	height: 100%;
+	padding: 1.5rem;
 }
 
 .goods-item__img {
@@ -644,7 +651,7 @@ footer {
 	-o-transition: opacity 0.2s 0s;
 	transition: opacity 0.2s 0s;
 	right: 1rem;
-	bottom: 0.5rem;
+	bottom: 2rem;
 	background-color: rgb(0, 88, 163);
 	border: 1px solid rgb(0, 88, 163);
 	background-repeat: no-repeat;
