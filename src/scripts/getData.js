@@ -82,3 +82,5 @@ export const getData = {
 		})
 	},
 }
+
+export default getData
