@@ -1,7 +1,5 @@
 import { getData } from './getData.js'
 
-const wishList = ['idd005', 'idd100', 'idd077', 'idd033']
-
 const cartList = [
 	{
 		id: 'idd015',

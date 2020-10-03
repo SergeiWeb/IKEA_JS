@@ -15,6 +15,7 @@ export const getData = {
 	wishList(list, callback) {
 		this.get(data => {
 			const result = data.filter(item => list.includes(item.id))
+
 			callback(result)
 		})
 	},
