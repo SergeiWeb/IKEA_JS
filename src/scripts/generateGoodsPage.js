@@ -1,14 +1,14 @@
 import { getData } from './getData.js'
+import userData from './userData.js'
 
 const COUNTER = 6
 
-const wishList = ['idd005', 'idd100', 'idd077', 'idd033']
-
 const generateGoodsPage = () => {
 	const mainHeader = document.querySelector('.main-header')
-	const goodsList = document.querySelector('.goods-list')
 
 	const generateCards = data => {
+		const goodsList = document.querySelector('.goods-list')
+
 		goodsList.textContent = ''
 		if (!data.length) {
 			const goods = document.querySelector('.goods')
@@ -16,6 +16,8 @@ const generateGoodsPage = () => {
 				location.search === `?wishlis`
 					? `Wishlist is empty`
 					: `By your request nothing found`
+
+			return
 		}
 
 		data.forEach(item => {
@@ -34,7 +36,7 @@ const generateGoodsPage = () => {
 										alt="${name}"
 									/>
 								</div>
-								${count > COUNTER ? '<p class="goods-item__new">Новинка</p>' : ''}
+								${count >= COUNTER ? '<p class="goods-item__new">Новинка</p>' : ''}
 								${!count ? '<p class="goods-item__new">Нет в наличии</p>' : ''}
 								<h3 class="goods-item__header">${name}</h3>
 								<p class="goods-item__description">
@@ -58,20 +60,28 @@ const generateGoodsPage = () => {
 				`
 			)
 		})
+
+		goodsList.addEventListener('click', event => {
+			const btnAddCard = event.target.closest('.btn-add-card')
+
+			if (btnAddCard) {
+				event.preventDefault()
+				userData.cartList = btnAddCard.dataset.idd
+				console.log(userData.cartList)
+			}
+		})
 	}
 
 	if (location.pathname.includes('goods') && location.search) {
 		const search = decodeURI(location.search)
 		const prop = search.split('=')[0].substring(1)
 		const value = search.split('=')[1]
-		console.log(value)
 
 		if (prop === 's') {
 			getData.search(value, generateCards)
-
 			mainHeader.textContent = `Searh: ${value}`
 		} else if (prop === 'wishlist') {
-			getData.wishList(wishList, generateCards)
+			getData.wishList(userData.wishList, generateCards)
 			mainHeader.textContent = `Wishlist`
 		} else if (prop === 'cat' || prop === 'subcat') {
 			getData.category(prop, value, generateCards)
