@@ -31,6 +31,32 @@ const userData = {
 		}
 		setLocalStorage('cartList', this.cartList)
 	},
+
+	/**
+	 * @param {{ id: any; count: number; }} itemCart
+	 */
+	set changeCountCartList(itemCart) {
+		let obj = this.cartListData.find(item => item.id === itemCart.id)
+		obj.count = itemCart.count
+
+		setLocalStorage('cartList', this.cartList)
+	},
+
+	/**
+	 * @param {any} id
+	 */
+	set deleteItemCart(id) {
+		let index = -1
+		this.cartList.forEach((item, i) => {
+			if (item.id === id) {
+				index = i
+			}
+		})
+
+		this.cartList.splice(index, 1)
+
+		setLocalStorage('cartList', this.cartList)
+	},
 }
 
 export default userData
